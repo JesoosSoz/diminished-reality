@@ -2,3 +2,6 @@ __pycache__/
 .vscode/
 backend/
 *.weights
+*.h5
+*.pbtxt
+*.pb
