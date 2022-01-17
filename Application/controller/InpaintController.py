@@ -4,12 +4,14 @@ from flask import Blueprint, render_template, session,abort, request
 from services.MaskCorrection import MaskCorrection
 from services.PixellibSegmentation import PixellibSegmentation
 from services.InpaintMaskRCNN import InpaintMaskRCNN
+from services.Config import Config
 import base64
 import json
 from cv2 import cv2
 import numpy as np
 
-pixellib_segmentation = PixellibSegmentation()
+config = Config()
+pixellib_segmentation = PixellibSegmentation(config)
 mask_correction = MaskCorrection()
 inpaint_algo = InpaintMaskRCNN()
 
@@ -29,17 +31,25 @@ def picture():
 
     json_data = json.loads(request.data)
     image = json_data["image"]
+    inpaint_list = json_data["object"]
+
     img = data_uri_to_cv2_img(image)
-    data_name = './services/data/image.jpg'
-    cv2.imwrite(data_name, img)
+    cv2.imwrite(config.path_decoded_base64_image, img)
 
-    img = cv2.imread('./services/data/menschlaufen.jpg')
+    img = cv2.imread(config.path_decoded_base64_image)
     resized_img = cv2.resize(img,(512, 512))
+    img, black_img = pixellib_segmentation.middle(resized_img.copy(), inpaint_list)
 
-    img, black_img = pixellib_segmentation.middle(resized_img.copy())
-    output_mask_img = mask_correction.correct_mask(resized_img.copy() , black_img)
-    inpainted_img = inpaint_algo.process_inpaint(output_mask_img)
-    result["image"] = base64.b64encode(inpainted_img).decode("utf-8")
+    print("len(img)")
+    print(len(img))
+    
+    if(len(img) == 0):
+        result["image"] = image
+    else:
+        output_mask_img = mask_correction.correct_mask(resized_img.copy() , black_img)
+        inpainted_img = inpaint_algo.process_inpaint(output_mask_img)
+        result["image"] = base64.b64encode(inpainted_img).decode("utf-8")
+    
     return result
 
 def data_uri_to_cv2_img(uri):
