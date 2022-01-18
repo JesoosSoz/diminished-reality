@@ -9,7 +9,7 @@ app.register_blueprint(FilterColorController1)
 #Decorating our function with app.route method
 @app.route('/')
 def hello_world():
-    return "Hello, This is home page."
+    return "Flask App is Running"
 
 #Running our Flask application using app.run method
 if __name__ == '__main__':

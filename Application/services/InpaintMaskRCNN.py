@@ -11,9 +11,9 @@ from services.libs.pconv_model import PConvUnet
 
 
 class InpaintMaskRCNN():
-    def __init__(self):
-        self.path_to_masc = "./services/data/mask.png"
-        self.path_to_inpaint_weights = "./services/data/weights.26-1.07.h5"
+    def __init__(self, config):
+        self.config = config
+        
     def process_inpaint(self, img):
         im, mask = self.preprocess_data(img.copy())
         print(type(im))
@@ -26,7 +26,7 @@ class InpaintMaskRCNN():
         im[:, :, 2] = im[:, :, 0]
         im[:, :, 0] = buffer[:, :, 2]
 
-        mask = Image.open(self.path_to_masc).resize((512, 512)).convert('RGB')
+        mask = Image.open(self.config.path_to_masc).resize((512, 512)).convert('RGB')
         mask = np.array(mask)
         print(mask)
         mask[mask!=0] = 2
@@ -45,7 +45,7 @@ class InpaintMaskRCNN():
     def inpaint_img(self, im, mask):
 
         model = PConvUnet(vgg_weights=None, inference_only=True)
-        model.load(self.path_to_inpaint_weights, train_bn=False)
+        model.load(self.config.path_to_inpaint_weights, train_bn=False)
 
         chunker = ImageChunker(512, 512, 30)
 
@@ -53,5 +53,5 @@ class InpaintMaskRCNN():
         chunked_images = chunker.dimension_preprocess(deepcopy(im))
         chunked_masks = chunker.dimension_preprocess(deepcopy(mask))
         pred_imgs = model.predict([chunked_images, chunked_masks])
-        cv2.imwrite('./services/data/prediction.png', cv2.cvtColor(pred_imgs[0] * 255 , cv2.COLOR_BGR2RGB))
+        cv2.imwrite(self.config.path_to_inpaintprediction, cv2.cvtColor(pred_imgs[0] * 255 , cv2.COLOR_BGR2RGB))
         return cv2.cvtColor(pred_imgs[0] * 255 , cv2.COLOR_BGR2RGB)

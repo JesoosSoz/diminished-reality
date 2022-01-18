@@ -12,8 +12,8 @@ import numpy as np
 
 config = Config()
 pixellib_segmentation = PixellibSegmentation(config)
-mask_correction = MaskCorrection()
-inpaint_algo = InpaintMaskRCNN()
+mask_correction = MaskCorrection(config)
+inpaint_algo = InpaintMaskRCNN(config)
 
 InpaintController1 = Blueprint('InpaintController1 ',__name__, url_prefix="/order")
 @InpaintController1.route("/", methods=('GET', 'POST'))

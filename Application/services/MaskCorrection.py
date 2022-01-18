@@ -5,9 +5,9 @@ from PIL import Image
 from cv2 import cv2
 
 class MaskCorrection():
-    def __init__(self):
+    def __init__(self, config):
+        self.config = config
         self.image_inpaint = 9
-        self.path_to_mask = "./services/data/mask.png"
 
     def correct_mask(self, img, black_image):
 
@@ -47,7 +47,7 @@ class MaskCorrection():
             j = j + 1
 
         final_onebite_masc = cv2.cvtColor(mask_output, cv2.COLOR_BGR2GRAY)
-        cv2.imwrite(self.path_to_mask, final_onebite_masc)
+        cv2.imwrite(self.config.path_to_mask, final_onebite_masc)
         dst = cv2.inpaint(img,final_onebite_masc,3,cv2.INPAINT_TELEA)
         output_mask_img = cv2.add(img,mask_output)
         

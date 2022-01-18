@@ -2,7 +2,8 @@ import cv2
 import numpy as np
 
 class ColorFilter():
-    def __init__(self) -> None:
+    def __init__(self, config) -> None:
+        self.config = config
         self.lower_blue = np.array([0, 0, 0])
         self.higher_blue = np.array([255, 90, 50])
         self.lower_red = np.array([0, 0, 0])
