@@ -1,8 +1,10 @@
 from flask import Flask
 from controller.InpaintController import InpaintController1
+from controller.FilterColorController import FilterColorController1
 
 app = Flask(__name__)
 app.register_blueprint(InpaintController1)
+app.register_blueprint(FilterColorController1)
 
 #Decorating our function with app.route method
 @app.route('/')

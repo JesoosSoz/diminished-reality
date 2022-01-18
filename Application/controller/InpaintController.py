@@ -33,7 +33,7 @@ def picture():
     image = json_data["image"]
     inpaint_list = json_data["object"]
 
-    img = data_uri_to_cv2_img(image)
+    img = config.data_uri_to_cv2_img(image)
     cv2.imwrite(config.path_decoded_base64_image, img)
 
     img = cv2.imread(config.path_decoded_base64_image)
@@ -42,7 +42,7 @@ def picture():
 
     print("len(img)")
     print(len(img))
-    
+
     if(len(img) == 0):
         result["image"] = image
     else:
@@ -51,10 +51,3 @@ def picture():
         result["image"] = base64.b64encode(inpainted_img).decode("utf-8")
     
     return result
-
-def data_uri_to_cv2_img(uri):
-    encoded_data = uri
-    nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    print("data_uri_to_cv2_img fertig")
-    return img
