@@ -12,7 +12,7 @@ class PixellibSegmentation():
         self.colors = np.random.randint(125, 255, (90, 3))
 
 
-    def middle(self, resized_img, inpaint_list):
+    def create_segmentation(self, resized_img, inpaint_list):
         """A dummy docstring."""
         boxes, masks = self.detection(resized_img)
         img, black_img, count = self.draw_segmentation(boxes, masks, resized_img, inpaint_list)

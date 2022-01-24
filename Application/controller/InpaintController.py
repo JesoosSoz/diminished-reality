@@ -15,9 +15,9 @@ pixellib_segmentation = PixellibSegmentation(config)
 mask_correction = MaskCorrection(config)
 inpaint_algo = InpaintMaskRCNN(config)
 
-InpaintController1 = Blueprint('InpaintController1 ',__name__, url_prefix="/order")
+InpaintController1 = Blueprint('InpaintController1 ',__name__, url_prefix="/inpaint")
 @InpaintController1.route("/", methods=('GET', 'POST'))
-def picture():
+def inpaint():
     """
     Callable by /picture through a GET method
     Retrieves the latest picture with the predictions made by the AI
@@ -38,7 +38,7 @@ def picture():
 
     img = cv2.imread(config.path_decoded_base64_image)
     resized_img = cv2.resize(img,(512, 512))
-    img, black_img = pixellib_segmentation.middle(resized_img.copy(), inpaint_list)
+    img, black_img = pixellib_segmentation.create_segmentation(resized_img.copy(), inpaint_list)
 
     print("len(img)")
     print(len(img))

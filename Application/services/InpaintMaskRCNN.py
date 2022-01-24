@@ -42,7 +42,7 @@ class InpaintMaskRCNN():
         print(np.asarray(im).shape)
         return np.asarray(im).copy(), mask
 
-    def inpaint_img(self, im, mask):
+    def inpaint_img(self, img, mask):
 
         model = PConvUnet(vgg_weights=None, inference_only=True)
         model.load(self.config.path_to_inpaint_weights, train_bn=False)
@@ -50,7 +50,7 @@ class InpaintMaskRCNN():
         chunker = ImageChunker(512, 512, 30)
 
         # Process sample
-        chunked_images = chunker.dimension_preprocess(deepcopy(im))
+        chunked_images = chunker.dimension_preprocess(deepcopy(img))
         chunked_masks = chunker.dimension_preprocess(deepcopy(mask))
         pred_imgs = model.predict([chunked_images, chunked_masks])
         cv2.imwrite(self.config.path_to_inpaintprediction, cv2.cvtColor(pred_imgs[0] * 255 , cv2.COLOR_BGR2RGB))

@@ -10,11 +10,11 @@ from cv2 import cv2
 import numpy as np
 
 config = Config()
-color_filter = ColorFilter()
+color_filter = ColorFilter(config)
 
 FilterColorController1 = Blueprint('FilterColorController1 ',__name__, url_prefix="/filtercolor")
 @FilterColorController1.route("/", methods=('GET', 'POST'))
-def picture():
+def filtercolor():
     """
     Callable by /picture through a GET method
     Retrieves the latest picture with the predictions made by the AI
