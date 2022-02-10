@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from cv2 import cv2
 
-class PixellibSegmentation():
+class PixelSegmentation():
     def __init__(self, config):
         self.config = config
         self.img_size = 512
