@@ -6,6 +6,10 @@ import numpy as np
 import base64
 
 class Config():
+    """
+    Object, which holds all environment Variables and converts the incoming image into the correct format
+    """
+
     def __init__(self):
         self.coco_names_path = "./services/data/coco.names"
         self.labels = open(self.coco_names_path).read().strip().split("\n")
@@ -19,6 +23,9 @@ class Config():
 
 
     def data_uri_to_cv2_img(self, uri):
+        """
+        Convert incoming base64 string images into a cv2 readable image 
+        """
         encoded_data = uri
         nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)

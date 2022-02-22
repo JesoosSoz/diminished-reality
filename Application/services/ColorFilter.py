@@ -10,11 +10,10 @@ class ColorFilter():
     """
     def __init__(self, config) -> None:
         """
-        Initializes Colorfilter Object
+        Initializes Colorfilter Object. Properties define the tolerance of the filtering.
 
         Params:
-        Required Config Object with environment variables
-        
+            Required Config Object with environment variables
         """
         self.config = config
         self.lower_blue = np.array([0, 0, 0])
