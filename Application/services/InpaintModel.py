@@ -8,12 +8,13 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from cv2 import cv2
 from numpy.lib.type_check import imag
+from keras import backend as K
 
 from services.libs.util import ImageChunker
 from services.libs.pconv_model import PConvUnet
 
 
-class InpaintMaskRCNN():
+class InpaintModel():
     """
     Class responsible for the inpainting
     """
@@ -93,4 +94,5 @@ class InpaintMaskRCNN():
         chunked_masks = chunker.dimension_preprocess(deepcopy(mask))
         pred_imgs = model.predict([chunked_images, chunked_masks])
         cv2.imwrite(self.config.path_to_inpaintprediction, cv2.cvtColor(pred_imgs[0] * 255 , cv2.COLOR_BGR2RGB))
+        K.clear_session()
         return cv2.cvtColor(pred_imgs[0] * 255 , cv2.COLOR_BGR2RGB)

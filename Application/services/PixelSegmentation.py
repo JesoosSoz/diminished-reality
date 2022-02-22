@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from cv2 import cv2
 
-class PixellibSegmentation():
+class PixelSegmentation():
     """
     Class responsible for the detection of the objects, which will be inpainted later
     """

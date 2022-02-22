@@ -5,8 +5,8 @@ import sys
 sys.path.append("..")
 from flask import Blueprint, render_template, session,abort, request
 from services.MaskCorrection import MaskCorrection
-from services.PixellibSegmentation import PixellibSegmentation
-from services.InpaintMaskRCNN import InpaintMaskRCNN
+from services.PixelSegmentation import PixelSegmentation
+from services.InpaintModel import InpaintModel
 from services.Config import Config
 import base64
 import json
@@ -14,9 +14,9 @@ from cv2 import cv2
 import numpy as np
 
 config = Config()
-pixellib_segmentation = PixellibSegmentation(config)
+pixel_segmentation = PixelSegmentation(config)
 mask_correction = MaskCorrection(config)
-inpaint_algo = InpaintMaskRCNN(config)
+inpaint_algo = InpaintModel(config)
 
 InpaintController1 = Blueprint('InpaintController1 ',__name__, url_prefix="/inpaint")
 @InpaintController1.route("/", methods=('GET', 'POST'))
@@ -43,7 +43,7 @@ def inpaint():
 
     img = cv2.imread(config.path_decoded_base64_image)
     resized_img = cv2.resize(img,(512, 512))
-    img, black_img = pixellib_segmentation.create_segmentation(resized_img.copy(), inpaint_list)
+    img, black_img = pixel_segmentation.create_segmentation(resized_img.copy(), inpaint_list)
 
     print("len(img)")
     print(len(img))
