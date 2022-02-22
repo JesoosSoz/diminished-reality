@@ -1,8 +1,21 @@
+"""
+Author: Victor Gouromichos
+"""
 import cv2
 import numpy as np
 
 class ColorFilter():
+    """
+    Object, which is responsible for the filtering of the colors
+    """
     def __init__(self, config) -> None:
+        """
+        Initializes Colorfilter Object
+
+        Params:
+        Required Config Object with environment variables
+        
+        """
         self.config = config
         self.lower_blue = np.array([0, 0, 0])
         self.higher_blue = np.array([255, 90, 50])
@@ -13,7 +26,16 @@ class ColorFilter():
 
     
     def filter_color(self, img, color):
+        """
+        Filters Colors, except the specified Color
+
+        Params:
+        img : Image, which will be filtered
+        color : All Colors will be filtered, except the specified one
         
+        Returns:
+        The filtered Image
+        """
         print("color")
         print(color)
 

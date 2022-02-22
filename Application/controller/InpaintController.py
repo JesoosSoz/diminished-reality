@@ -1,3 +1,6 @@
+"""
+Author: Victor Gouromichos
+"""
 import sys
 sys.path.append("..")
 from flask import Blueprint, render_template, session,abort, request
@@ -19,13 +22,15 @@ InpaintController1 = Blueprint('InpaintController1 ',__name__, url_prefix="/inpa
 @InpaintController1.route("/", methods=('GET', 'POST'))
 def inpaint():
     """
-    Callable by /picture through a GET method
-    Retrieves the latest picture with the predictions made by the AI
+    Callable by /inpaint through a GET or POST method
+    Receives a picture and returns an inpainted image based on the specified Objects
 
     Params:
+        image : Image, which will be inpainted
+        object : List of object, which should be removed from the picture
 
     Returns:
-        The latest taken picture with predictions encoeded in base64
+        Inpainted picture
     """
     result = {}
 

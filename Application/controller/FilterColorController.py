@@ -1,3 +1,7 @@
+"""
+Author: Victor Gouromichos
+"""
+
 import sys
 from turtle import color
 sys.path.append("..")
@@ -16,13 +20,15 @@ FilterColorController1 = Blueprint('FilterColorController1 ',__name__, url_prefi
 @FilterColorController1.route("/", methods=('GET', 'POST'))
 def filtercolor():
     """
-    Callable by /picture through a GET method
-    Retrieves the latest picture with the predictions made by the AI
+    Callable by /filtercolor through a GET or POST method
+    Receives a picture and returns a the picture based on the specified color
 
     Params:
+        image : Image, which will be filtered
+        color : Specified color
 
     Returns:
-        The latest taken picture with predictions encoeded in base64
+        The filtered Picture
     """
     result = {}
 

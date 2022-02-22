@@ -1,3 +1,7 @@
+"""
+Author: Victor Gouromichos
+"""
+
 from copy import deepcopy
 from operator import truediv
 import numpy as np
@@ -6,25 +10,52 @@ from PIL import Image
 from cv2 import cv2
 
 class PixellibSegmentation():
+    """
+    Class responsible for the detection of the objects, which will be inpainted later
+    """
     def __init__(self, config):
+        """
+        Initializes Object
+
+        Params:
+            Config Object, for the environment variables
+        """
         self.config = config
         self.img_size = 512
         self.colors = np.random.randint(125, 255, (90, 3))
 
 
     def create_segmentation(self, resized_img, inpaint_list):
-        """A dummy docstring."""
+        """
+        Middleware for the Functions
+
+        Params:
+            resized_img : Image which will be inpainted later
+            inpaint_list : Objects which should be detected
+
+        Returns:
+            Image : Image with the detections
+            black_img : Image Masc with the Detections
+        """
         boxes, masks = self.detection(resized_img)
         img, black_img, count = self.draw_segmentation(boxes, masks, resized_img, inpaint_list)
-        print("count")
-        print(count)
+
         if(count == 0):
             return [],[]
         else:
             return img, black_img
 
     def detection(self, img):
-        """A dummy docstring."""
+        """
+        Detects Objects in the Image, based on the trained model
+
+        Params:
+            img : Image, with the objects, which will be detected
+
+        Returns:
+            boxes : Bounding Boxes of the detected Objects
+            masks : Masks of the detected objects
+        """
         model = cv2.dnn.readNetFromTensorflow(self.config.path_to_coco_weights, self.config.path_to_coco_config)
         blob = cv2.dnn.blobFromImage(img, swapRB=True)
         model.setInput(blob)
@@ -32,6 +63,21 @@ class PixellibSegmentation():
         return boxes, masks
 
     def draw_segmentation(self, boxes, masks, img, inpaint_list):
+        """
+        Create a Detection Masc,
+        based on the List of objects to detect and the detections which were made in the steps before
+        
+
+        Params:
+            boxes : predicted objects in the image
+            masks : Corresponding mascs of the predictions
+            img : Image with the detected objects
+            inpaint_list : Objects, which are relevant for the Inpaint step
+
+        Returns:
+            black_image : Masc with the objects of the inpaint_list
+            count : Count of the detected objects, corresponding to the inpaint_list
+        """
         height, width, _ = img.shape
         black_image = np.zeros((height, width, 3), np.uint8)
         black_image[:] = (0, 0, 0)
@@ -71,18 +117,15 @@ class PixellibSegmentation():
         return img, black_image, count
     
     def object_not_in_inpaintlist(self, inpaint_list, class_id):
-        print("class_id")
-        print(class_id)
-        print(inpaint_list)
-
+        """
+        Helper Function, returns true if the specified class_id is in the inpaint_List or not
+        """
 
         inpaint_object = self.config.labels[int(class_id)]
 
         if(inpaint_object in inpaint_list):
-            print("False")
             return False
         else:
-            print("True")
             return True
             
 

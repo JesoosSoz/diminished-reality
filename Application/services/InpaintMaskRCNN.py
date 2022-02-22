@@ -1,3 +1,6 @@
+"""
+Author: Victor Gouromichos
+"""
 from copy import deepcopy
 from typing import Type
 import numpy as np
@@ -11,16 +14,43 @@ from services.libs.pconv_model import PConvUnet
 
 
 class InpaintMaskRCNN():
+    """
+    Class responsible for the inpainting
+    """
     def __init__(self, config):
+        """
+        Initializes Colorfilter Object
+
+        Params:
+            Required Config Object with environment variables
+        
+        """
         self.config = config
         
     def process_inpaint(self, img):
+        """
+        Middleware Function for the different Functions
+
+        Params:
+            image to inpaint
+        
+        Returns:
+            Inpainted Image
+        """
         im, mask = self.preprocess_data(img.copy())
         print(type(im))
         return self.inpaint_img(im, mask)
 
     def preprocess_data(self, img):
-        print("preprocess_data")
+        """
+        Preprocessses the Image
+
+        Params:
+            Image to inpaint later
+        
+        Returns:
+            Preprocessed Image
+        """
         im = img.copy() / 255
         buffer = img.copy() / 255
         im[:, :, 2] = im[:, :, 0]
@@ -43,6 +73,15 @@ class InpaintMaskRCNN():
         return np.asarray(im).copy(), mask
 
     def inpaint_img(self, img, mask):
+        """
+        Function to inpaint the Image
+
+        Params:
+            Image to inpaint
+        
+        Returns:
+            Inpainted Image
+        """
 
         model = PConvUnet(vgg_weights=None, inference_only=True)
         model.load(self.config.path_to_inpaint_weights, train_bn=False)
