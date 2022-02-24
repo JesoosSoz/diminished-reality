@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">DiminishedReality</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Settings</string>
+    <string name="second_fragment_label">Diminished Reality</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="settings">Settings</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="select_mode">Select a diminishing mode</string>
+    <string name="select_object">Select an object to diminish</string>
+
+    <string-array name="objects_array">
+        <item>aeroplane</item>
+        <item>apple</item>
+        <item>backpack</item>
+        <item>banana</item>
+        <item>baseball bat</item>
+        <item>baseball glove</item>
+        <item>bear</item>
+        <item>bed</item>
+        <item>bench</item>
+        <item>bicycle</item>
+        <item>bird</item>
+        <item>boat</item>
+        <item>book</item>
+        <item>bottle</item>
+        <item>bowl</item>
+        <item>broccoli</item>
+        <item>bus</item>
+        <item>cake</item>
+        <item>car</item>
+        <item>carrot</item>
+        <item>cat</item>
+        <item>cell phone</item>
+        <item>chair</item>
+        <item>clock</item>
+        <item>cow</item>
+        <item>cup</item>
+        <item>diningtable</item>
+        <item>dog</item>
+        <item>donut</item>
+        <item>elephant</item>
+        <item>fire hydrant</item>
+        <item>fork</item>
+        <item>frisbee</item>
+        <item>giraffe</item>
+        <item>hair drier</item>
+        <item>handbag</item>
+        <item>horse</item>
+        <item>hot dog</item>
+        <item>keyboard</item>
+        <item>kite</item>
+        <item>knife</item>
+        <item>laptop</item>
+        <item>microwave</item>
+        <item>motorbike</item>
+        <item>mouse</item>
+        <item>orange</item>
+        <item>oven</item>
+        <item>parking meter</item>
+        <item>person</item>
+        <item>pizza</item>
+        <item>pottedplant</item>
+        <item>refrigerator</item>
+        <item>remote</item>
+        <item>sandwich</item>
+        <item>scissors</item>
+        <item>sheep</item>
+        <item>sink</item>
+        <item>skateboard</item>
+        <item>skis</item>
+        <item>snowboard</item>
+        <item>sofa</item>
+        <item>spoon</item>
+        <item>sports ball</item>
+        <item>stop sign</item>
+        <item>suitcase</item>
+        <item>surfboard</item>
+        <item>teddy bear</item>
+        <item>tennis racket</item>
+        <item>tie</item>
+        <item>toaster</item>
+        <item>toilet</item>
+        <item>toothbrush</item>
+        <item>traffic light</item>
+        <item>train</item>
+        <item>truck</item>
+        <item>tvmonitor</item>
+        <item>umbrella</item>
+        <item>vase</item>
+        <item>wine glass</item>
+        <item>zebra</item>
+    </string-array>
+
+</resources>

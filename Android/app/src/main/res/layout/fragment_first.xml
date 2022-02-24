@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentSettings">
+
+    <TextView
+        android:id="@+id/textview_select"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/select_mode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup android:id="@+id/toggleGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_select"
+        >
+
+        <ToggleButton android:id="@+id/btn_Objects"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="Objects"
+            android:textOff="Objects"
+            />
+        <ToggleButton android:id="@+id/btn_Colors"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="Colors"
+            android:textOff="Colors"
+            />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textview_first"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/select_object"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggleGroup" />
+
+    <RadioGroup android:id="@+id/toggleGroupColor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textview_first"
+        >
+
+        <ToggleButton android:id="@+id/btn_Red"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="Red"
+            android:textOff="Red"
+            android:backgroundTint="#ffc2c2"
+            />
+        <ToggleButton android:id="@+id/btn_Green"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="Green"
+            android:textOff="Green"
+            android:backgroundTint="#d4f0ce"
+            />
+        <ToggleButton android:id="@+id/btn_Blue"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="Blue"
+            android:textOff="Blue"
+            android:backgroundTint="#b8cff5"
+            />
+    </RadioGroup>
+
+
+    <Spinner
+        android:id="@+id/spinner_objects"
+        android:layout_width="156dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textview_first" />
+
+    <Button
+        android:id="@+id/button_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_objects" />
+</androidx.constraintlayout.widget.ConstraintLayout>
