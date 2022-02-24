@@ -44,11 +44,8 @@ import java.io.InputStream
 import java.io.OutputStream
 
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- *
- * https://developer.android.com/codelabs/camerax-getting-started#1
- */
+//Author: Vincent Hald
+
 class FragmentCamera : Fragment() {
 
     //set liveView to true for continuous image capture and processing
