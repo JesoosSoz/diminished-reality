@@ -14,10 +14,8 @@ import android.widget.AdapterView
 
 import androidx.core.view.isVisible
 
+//Author: Vincent Hald
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class FragmentSettings : Fragment() {
 
     //create binding for interaction with UI controls
