@@ -1,3 +1,7 @@
+"""
+Author: Victor Gouromichos
+"""
+
 from flask import Flask
 from controller.InpaintController import InpaintController1
 from controller.FilterColorController import FilterColorController1
