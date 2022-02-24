@@ -7,6 +7,8 @@ import okhttp3.RequestBody
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
+//Author: Vincent Hald
+
 object DiminishingAPI {
     private val JSON = MediaType.parse("application/json; charset=utf-8")
 
