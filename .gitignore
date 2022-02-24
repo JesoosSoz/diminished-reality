@@ -2,3 +2,12 @@ Application/services/data/frozen_inference_graph_coco.pb
 Application/services/data/weights.26-1.07.h5
 DR.Backend/configs/yolov3-tiny.weights
 DR.Backend/configs/yolov3.weights
+*.iml
+.gradle
+/local.properties
+/.idea/*
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
