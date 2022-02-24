@@ -8,6 +8,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
+//Author: Vincent Hald
 
 object ImageProcessing {
 
